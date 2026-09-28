@@ -1,0 +1,131 @@
+/**
+ * Design tokens — shared foundation for both visual themes
+ * (Obsidian/Cinematic and Digital/Blueprint).
+ *
+ * These are raw CSS custom properties, theme-scoped via [data-theme].
+ * Tailwind-facing aliases are mapped from these in src/app/globals.css
+ * via `@theme inline`, so components can use either
+ * `var(--color-accent)` or Tailwind utilities like `bg-accent`.
+ *
+ * Do not hardcode raw hex/px values in components — add or reuse a
+ * token here instead. See docs/DESIGN_SYSTEM.md for the rationale,
+ * full palette reference and usage guidance.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --shadow-glow-accent: 0 0 24px rgba(79, 140, 255, 0.35);
+
+  /* ---- Blur ---- */
+  --blur-sm: 6px;
+  --blur-md: 14px;
+  --blur-lg: 28px;
+
+  /* ---- Motion ---- */
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Z-index layers ---- */
+  --z-base: 0;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ---- Typography ---- */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --text-display: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  --text-h1: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --text-h2: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --text-h3: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+
+  /* ---- Semantic spacing (section rhythm, distinct from the
+     Tailwind spacing scale used for component-level spacing) ---- */
+  --space-section-y: clamp(3.5rem, 3rem + 3vw, 8rem);
+  --space-section-x: clamp(1.25rem, 1rem + 2vw, 4rem);
+}
+
+/*
+ * ---- THEME A: Obsidian / Cinematic ----
+ * Default theme. Black/charcoal base, glass surfaces, soft glow.
+ */
+:root,
+[data-theme="obsidian"] {
+  --color-bg: #08080a;
+  --color-bg-elevated: #0f0f13;
+  --color-surface: #131317;
+  --color-surface-glass: rgba(255, 255, 255, 0.04);
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  --color-fg: #f3f3f5;
+  --color-fg-muted: #a2a2ad;
+  --color-fg-subtle: #6c6c78;
+
+  --color-accent: #4f8cff;
+  --color-accent-fg: #04101f;
+  --color-accent-soft: rgba(79, 140, 255, 0.14);
+
+  --color-highlight: #f5b942;
+
+  --color-success: #34d399;
+  --color-warning: #f5b942;
+  --color-danger: #f2545b;
+  --color-info: #4f8cff;
+}
+
+/*
+ * ---- THEME B: Digital / Blueprint ----
+ * Opt-in via <html data-theme="blueprint">. Navy/graphite base,
+ * technical grid, higher-contrast cyan accent.
+ */
+[data-theme="blueprint"] {
+  --color-bg: #0a0e16;
+  --color-bg-elevated: #0e1420;
+  --color-surface: #111927;
+  --color-surface-glass: rgba(120, 170, 255, 0.05);
+  --color-border: rgba(140, 180, 255, 0.14);
+  --color-border-strong: rgba(140, 180, 255, 0.24);
+
+  --color-fg: #e7edf7;
+  --color-fg-muted: #8e9bb3;
+  --color-fg-subtle: #5c6780;
+
+  --color-accent: #22d3ee;
+  --color-accent-fg: #03181c;
+  --color-accent-soft: rgba(34, 211, 238, 0.14);
+
+  --color-highlight: #f5b942;
+
+  --color-success: #34d399;
+  --color-warning: #f5b942;
+  --color-danger: #f2545b;
+  --color-info: #22d3ee;
+
+  /* Blueprint-specific technical grid, used by layout/background
+     utilities — not part of the shared token contract. */
+  --grid-line: rgba(140, 180, 255, 0.08);
+  --grid-size: 32px;
+}

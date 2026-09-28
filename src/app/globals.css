@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/*
+ * Maps design tokens (src/styles/tokens.css) into Tailwind's
+ * generated utility classes, e.g. --color-accent -> bg-accent,
+ * text-accent, border-accent, etc. Keep this file thin: it should
+ * only ever re-export tokens, never define new raw values.
+ */
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-background-elevated: var(--color-bg-elevated);
+  --color-surface: var(--color-surface);
+  --color-surface-glass: var(--color-surface-glass);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-foreground: var(--color-fg);
+  --color-foreground-muted: var(--color-fg-muted);
+  --color-foreground-subtle: var(--color-fg-subtle);
+
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-fg);
+  --color-accent-soft: var(--color-accent-soft);
+  --color-highlight: var(--color-highlight);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}
+
+/* Respect reduced-motion preferences globally; components that add
+   motion (incl. any future Three.js scenes) must also check this. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
